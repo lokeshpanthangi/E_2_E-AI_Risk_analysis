@@ -17,7 +17,7 @@ class Input(BaseModel):
 
 
 
-pipe1 = pickle.load(open("rf_model.pkl","rb"))
+model = pickle.load(open("rf_model.pkl","rb"))
 
 
 jobs = ['Security Guard', 'Research Scientist', 'Construction Worker',
@@ -55,6 +55,6 @@ def input(input : Input):
     input_data = pd.DataFrame([[job, education, avg_sal, Years_Experience, AI_Exposure_Index, Tech_Growth_Factor, Automation_Probability_2030]],
                               columns=['Job_Title', 'Education_Level', 'Average_Salary', 'Years_Experience', 'AI_Exposure_Index', 'Tech_Growth_Factor', 'Automation_Probability_2030'])
     
-    prediction = pipe1.predict(input_data)[0]
+    prediction = model.predict(input_data)[0]
 
     return {"Prediction": str(prediction)}
